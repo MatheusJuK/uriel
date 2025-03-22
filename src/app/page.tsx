@@ -10,74 +10,74 @@ import { cn } from "@/lib/utils"
 const photos = [
   {
     id: 1,
-    src: "/public/foto1.jpg",
+    src: "/foto1.jpg",
     alt: "Foto 1",
     description: "This is the first photo in the collection. It shows a beautiful landscape.",
   },
   {
     id: 2,
-    src: "/placeholder.svg?height=300&width=300",
-    alt: "Photo 2",
-    description: "This is the second photo. It captures a special moment with friends.",
+    src: "/foto2.jpg",
+    alt: "Foto 2",
+    description: "This is the second Foto. It captures a special moment with friends.",
   },
   {
     id: 3,
-    src: "/placeholder.svg?height=300&width=300",
-    alt: "Photo 3",
-    description: "The third photo shows an amazing sunset over the ocean.",
+    src: "/foto3.jpg",
+    alt: "Foto 3",
+    description: "The third Foto shows an amazing sunset over the ocean.",
   },
   {
     id: 4,
-    src: "/placeholder.svg?height=300&width=300",
-    alt: "Photo 4",
-    description: "This is a photo from a family gathering last summer.",
+    src: "/foto4.jpg",
+    alt: "Foto 4",
+    description: "This is a Foto from a family gathering last summer.",
   },
   {
     id: 5,
-    src: "/placeholder.svg?height=300&width=300",
-    alt: "Photo 5",
+    src: "/foto5.jpg",
+    alt: "Foto 5",
     description: "A beautiful mountain landscape captured during a hiking trip.",
   },
   {
     id: 6,
-    src: "/placeholder.svg?height=300&width=300",
-    alt: "Photo 6",
-    description: "This photo shows the city skyline at night with all the lights.",
+    src: "/foto6.jpg",
+    alt: "Foto 6",
+    description: "This Foto shows the city skyline at night with all the lights.",
   },
   {
     id: 7,
-    src: "/placeholder.svg?height=300&width=300",
-    alt: "Photo 7",
+    src: "/foto7.jpg",
+    alt: "Foto 7",
     description: "A candid moment captured during a birthday celebration.",
   },
   {
     id: 8,
-    src: "/placeholder.svg?height=300&width=300",
-    alt: "Photo 8",
+    src: "/foto8.jpg",
+    alt: "Foto 8",
     description: "This is from the trip to the beach last year with amazing waves.",
   },
   {
     id: 9,
-    src: "/placeholder.svg?height=300&width=300",
-    alt: "Photo 9",
+    src: "/foto9.jpg",
+    alt: "Foto 9",
     description: "A candid moment captured during a birthday celebration.",
   },
   {
     id: 10,
-    src: "/placeholder.svg?height=300&width=300",
-    alt: "Photo 10",
+    src: "/foto10.jpg",
+    alt: "Foto 10",
     description: "This is from the trip to the beach last year with amazing waves.",
   },
   {
     id: 11,
-    src: "/placeholder.svg?height=300&width=300",
-    alt: "Photo 11",
+    src: "/foto11.jpg",
+    alt: "Foto 11",
     description: "A candid moment captured during a birthday celebration.",
   },
   {
     id: 12,
-    src: "/placeholder.svg?height=300&width=300",
-    alt: "Photo 12",
+    src: "/foto12.jpg",
+    alt: "Foto 12",
     description: "This is from the trip to the beach last year with amazing waves.",
   },
 ]
@@ -134,23 +134,23 @@ export default function PhotoGallery() {
                   className="relative"
                   onClick={() => handlePhotoClick(photo.id)}
                   >
+                    <div
+                      className={cn(
+                        "absolute -top-2 left-1/2 w-4 h-4 rounded-full transform -translate-x-1/2 -translate-y-1/2",
+                        selectedPhoto === photo.id ? "bg-white" : "bg-black",
+                      )}
+                    ></div>
                     {/* Photo frame */}
                     <div
                       className={cn(
-                        "w-50 h-70 border-2 cursor-pointer transition-all duration-300",
+                        "w-50 h-70 border-[4px] border-black box-border cursor-pointer transition-all duration-300 hover:border-white",
                         selectedPhoto === photo.id
                         ? "border-white scale-120 mt-7 mx-5"
-                        : "border-black hover:border-white",
+                        : "scale-100",
                       )}
                       >
                       {/* Light bulb positioned directly on the curve */}
-                      <div
-                        className={cn(
-                          "absolute -top-2 left-1/2 w-4 h-4 rounded-full transform -translate-x-1/2 -translate-y-1/2",
-                          selectedPhoto === photo.id ? "bg-white" : "bg-black",
-                        )}
-                        ></div>
-                      <Image src={photo.src || "/placeholder.svg"} alt={photo.alt} fill className="object-cover" />
+                      <Image src={photo.src || "/placeholder.svg"} alt={photo.alt} fill className="object-cover box-content"/>
                     </div>
                   </div>
                 )
