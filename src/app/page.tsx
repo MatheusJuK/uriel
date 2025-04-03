@@ -12,73 +12,73 @@ const photos = [
     id: 1,
     src: "/foto1.jpg",
     alt: "Foto 1",
-    description: "This is the first photo in the collection. It shows a beautiful landscape.",
+    description: "Nosso primeiro halloween juntos, fiquei muito feliz que você me convidou, foi muito legal esse dia.",
   },
   {
     id: 2,
     src: "/foto2.jpg",
     alt: "Foto 2",
-    description: "This is the second Foto. It captures a special moment with friends.",
+  description: "Quando a gente ficou na área la fora do condomínio esperando seu pai(acho q foi por isso), apesar de eu não amar o ar livre, você fez ser muito legal.",
   },
   {
     id: 3,
     src: "/foto3.jpg",
     alt: "Foto 3",
-    description: "The third Foto shows an amazing sunset over the ocean.",
+    description: "Uma das nossas melhores fotos, você tá muito fofo e eu amei esse dia, foi muito divertido lá no estacionamento do shopping.",
   },
   {
     id: 4,
     src: "/foto4.jpg",
     alt: "Foto 4",
-    description: "This is a Foto from a family gathering last summer.",
+    description: "Adoro essa foto, a gente comemorando meu aniversário e da cecília, você tá MUITO fofo nessa foto vida.",
   },
   {
     id: 5,
     src: "/foto5.jpg",
     alt: "Foto 5",
-    description: "A beautiful mountain landscape captured during a hiking trip.",
+    description: "Primeira vez que a gente viajou juntos, esse dia em especial foi um dos mais legais, amo como dá pra perceber o seu amor nessa foto.",
   },
   {
     id: 6,
     src: "/foto6.jpg",
     alt: "Foto 6",
-    description: "This Foto shows the city skyline at night with all the lights.",
+    description: "Essa aqui foi na praia, tava no pôr do sol quase anoitecendo e a gente lá tirando foto.",
   },
   {
     id: 7,
     src: "/foto7.jpg",
     alt: "Foto 7",
-    description: "A candid moment captured during a birthday celebration.",
+    description: "O nosso relicário, um dos melhores presentes que eu já ganhei, pra mim é uma representação física do nosso amor.",
   },
   {
     id: 8,
     src: "/foto8.jpg",
     alt: "Foto 8",
-    description: "This is from the trip to the beach last year with amazing waves.",
+    description: "Quando a gente foi pro halloween combinando, essa foi a melhor foto desse dia, a gente sendo boboquinha.",
   },
   {
     id: 9,
     src: "/foto9.jpg",
     alt: "Foto 9",
-    description: "A candid moment captured during a birthday celebration.",
+    description: "Quando a gente montou a árvore de natal, você ta muito fofinho nessa foto, eu te amo muito vida. Na foto 5 da pra ver seu amor, nessa eu consigo ver o meu por você",
   },
   {
     id: 10,
     src: "/foto10.jpg",
     alt: "Foto 10",
-    description: "This is from the trip to the beach last year with amazing waves.",
+    description: "Dois gostosos tirando foto de gostoso no espelho antes de sair pro restaurante no meu aniversário.",
   },
   {
     id: 11,
-    src: "/foto11.jpg",
+    src: "/foto11.png",
     alt: "Foto 11",
-    description: "A candid moment captured during a birthday celebration.",
+    description: "Quando a gabi pintou literalmente a gente, ficou muito fofo. Eu te amo meu bem.",
   },
   {
     id: 12,
-    src: "/foto12.jpg",
+    src: "/foto12.png",
     alt: "Foto 12",
-    description: "This is from the trip to the beach last year with amazing waves.",
+    description: "Do dia que eu lhe acompanhei no maurício, a gente tirou algumas fotos que eu acho muito bonitas la na frente do consultório e essa é uma das melhores.",
   },
 ]
 
@@ -87,10 +87,40 @@ export default function PhotoGallery() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const handlePhotoClick = (id: number) => {
-    setSelectedPhoto(id)
+    if (selectedPhoto == id) {
+      setSelectedPhoto(null);
+    }else{
+      setSelectedPhoto(id)
+    }
   }
   // Calculate the total width needed for the photos
   const totalWidth = photos.length * 309 // 144px = 132px (photo width) + 12px (gap)
+
+  let btn = document.getElementById('btn');
+  let btnS = document.getElementById('btnS');
+  function geraPosicao(min: number,max: number){
+    return Math.random() * (max - min) + min + "%";
+  }
+  function showLoveMessage() {
+    alert("Eu te amo meu amor, você é incrível e eu espero que tenha gostado do presente, agora a gente tem que ir no shopping pra gente fazer aquilo que eu falei que era melhor fazer juntos");
+  }
+  if (btn && btnS) {
+    btn.addEventListener("click", function() {
+      btn.style.position = "absolute";
+      btn.style.bottom = geraPosicao(10,90);
+      btn.style.left = geraPosicao(10,90);
+    });
+    btn.addEventListener("mouseover", function() {
+      btn.style.position = "absolute";
+      btn.style.bottom = geraPosicao(10,90);
+      btn.style.left = geraPosicao(10,90);
+    });
+    if (!btnS.dataset.listenerAdded) {
+      btnS.addEventListener("click", showLoveMessage);
+      btnS.dataset.listenerAdded = "true"; // Marca que o evento foi adicionado
+    }
+  }
+  
 
   return (
     <>
@@ -162,9 +192,9 @@ export default function PhotoGallery() {
 
       {/* Photo Description */}
       {selectedPhoto && (
-        <div className="max-w-2xl mx-auto mb-12 bg-gray-900/80 p-6 rounded-lg border border-amber-600">
-          <div className="flex items-start gap-4">
-            <div className="relative w-40 h-40 flex-shrink-0">
+        <div className="max-w-[700px] mx-auto mb-12 bg-gray-900/80 p-6 rounded-lg border border-black">
+          <div className="flex items-center gap-4 flex-col md:flex-row md:items-start">
+            <div className="relative w-60 h-80 flex-shrink-0">
               <Image
                 src={photos.find((p) => p.id === selectedPhoto)?.src || ""}
                 alt={photos.find((p) => p.id === selectedPhoto)?.alt || ""}
@@ -181,10 +211,20 @@ export default function PhotoGallery() {
           </div>
         </div>
       )}
-      <div className="flex items-center justify-center">
-        <iframe src="https://open.spotify.com/embed/playlist/1g4Bekw7Xnq2AV7Md9XFZE?utm_source=generator" width="30%" height="351" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div className="flex justify-center">
+          <iframe className ="h-[300px] max-w-[700px]" src="https://open.spotify.com/embed/playlist/1L0T3uocjUTl8NV9eOtvhp?utm_source=generator" width="100%" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+        <div className="flex justify-center">
+          <div className="bg-[#690900] max-w-[800px] h-[300px] p-10 text-center grow relative flex flex-col gap-10 rounded-md">
+            <h2 className="z-10 text-[#000] text-2xl bg-white"><i className="bi bi-heart-fill"></i>Eu te amo<i className="bi bi-heart-fill"></i></h2>
+            <h1 className="z-10 text-[#000] text-2xl bg-white">Você me ama?</h1>
+            <div className="flex justify-center items-center">
+                <button id='btnS' className="bg-black text-white border-none p-2 w-[80px] rounded-xl">SIM</button>
+                <button id="btn" className="bg-black text-white border-none p-2 w-[80px] rounded-xl z-11">NÃO</button>
+            </div>
+          </div>
       </div>
-    </div>
+      </div>
     </>
   )
 }
