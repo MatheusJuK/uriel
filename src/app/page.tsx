@@ -1,7 +1,7 @@
 "use client"
 
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 
@@ -85,6 +85,11 @@ const photos = [
 export default function PhotoGallery() {
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
   const handlePhotoClick = (id: number) => {
     if (selectedPhoto == id) {
@@ -95,29 +100,30 @@ export default function PhotoGallery() {
   }
   // Calculate the total width needed for the photos
   const totalWidth = photos.length * 309 // 144px = 132px (photo width) + 12px (gap)
-
-  let btn = document.getElementById('btn');
-  let btnS = document.getElementById('btnS');
-  function geraPosicao(min: number,max: number){
-    return Math.random() * (max - min) + min + "%";
-  }
-  function showLoveMessage() {
-    alert("Eu te amo meu amor, você é incrível e eu espero que tenha gostado do presente, agora a gente tem que ir no shopping pra gente fazer aquilo que eu falei que era melhor fazer juntos");
-  }
-  if (btn && btnS) {
-    btn.addEventListener("click", function() {
-      btn.style.position = "absolute";
-      btn.style.bottom = geraPosicao(10,90);
-      btn.style.left = geraPosicao(10,90);
-    });
-    btn.addEventListener("mouseover", function() {
-      btn.style.position = "absolute";
-      btn.style.bottom = geraPosicao(10,90);
-      btn.style.left = geraPosicao(10,90);
-    });
-    if (!btnS.dataset.listenerAdded) {
-      btnS.addEventListener("click", showLoveMessage);
-      btnS.dataset.listenerAdded = "true"; // Marca que o evento foi adicionado
+  if (isClient) {
+    let btn = document.getElementById('btn');
+    let btnS = document.getElementById('btnS');
+    function geraPosicao(min: number,max: number){
+      return Math.random() * (max - min) + min + "%";
+    }
+    function showLoveMessage() {
+      alert("Eu te amo meu amor, você é incrível e eu espero que tenha gostado do presente, agora a gente tem que ir no shopping pra gente fazer aquilo que eu falei que era melhor fazer juntos");
+    }
+    if (btn && btnS) {
+      btn.addEventListener("click", function() {
+        btn.style.position = "absolute";
+        btn.style.bottom = geraPosicao(10,90);
+        btn.style.left = geraPosicao(10,90);
+      });
+      btn.addEventListener("mouseover", function() {
+        btn.style.position = "absolute";
+        btn.style.bottom = geraPosicao(10,90);
+        btn.style.left = geraPosicao(10,90);
+      });
+      if (!btnS.dataset.listenerAdded) {
+        btnS.addEventListener("click", showLoveMessage);
+        btnS.dataset.listenerAdded = "true"; // Marca que o evento foi adicionado
+      }
     }
   }
   
