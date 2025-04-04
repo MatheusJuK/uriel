@@ -107,7 +107,7 @@ export default function PhotoGallery() {
       return Math.random() * (max - min) + min + "%";
     }
     function showLoveMessage() {
-      alert("Eu te amo meu amor, você é incrível e eu espero que tenha gostado do presente, agora a gente tem que ir no shopping pra gente fazer aquilo que eu falei que era melhor fazer juntos");
+      alert("Eu te amo meu amor, você é incrível e eu espero que tenha gostado do presente");
     }
     if (btn && btnS) {
       btn.addEventListener("click", function() {
@@ -222,11 +222,11 @@ export default function PhotoGallery() {
         </div>
         <div className="flex justify-center">
           <div className="bg-[#690900] max-w-[800px] h-[300px] p-10 text-center grow relative flex flex-col gap-10 rounded-md">
-            <h2 className="z-10 text-[#000] text-2xl bg-white"><i className="bi bi-heart-fill"></i>Eu te amo<i className="bi bi-heart-fill"></i></h2>
-            <h1 className="z-10 text-[#000] text-2xl bg-white">Você me ama?</h1>
+            <h2 className="z-10 text-[#fff] text-2xl"><i className="bi bi-heart-fill"></i>Eu te amo<i className="bi bi-heart-fill"></i></h2>
+            <h1 className="z-10 text-[#fff] text-2xl">Você me ama?</h1>
             <div className="flex justify-center items-center">
-                <button id='btnS' className="bg-black text-white border-none p-2 w-[80px] rounded-xl">SIM</button>
-                <button id="btn" className="bg-black text-white border-none p-2 w-[80px] rounded-xl z-11">NÃO</button>
+                <button id='btnS' className="bg-[#99237f] text-white border-none p-2 w-[80px] rounded-xl">SIM</button>
+                <button id="btn" className="bg-[#99237f] text-white border-none p-2 w-[80px] rounded-xl z-11">NÃO</button>
             </div>
           </div>
       </div>
